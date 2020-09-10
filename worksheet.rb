@@ -121,17 +121,13 @@ all_rides = {
 # - the number of rides each driver has given
 
 def total_rides_per_driver(all_rides)
-  rides_per_driver = {}
-
-  all_rides.each do |driver_id, rides|
-    rides_per_driver[driver_id] = rides.length
+  return all_rides.map do |driver_id, rides|
+    { :driver_id => driver_id, :total_rides => rides.length }
   end
-
-  return rides_per_driver
 end
 
-total_rides_per_driver(all_rides).each do |driver, rides|
-  puts "#{driver} gave #{rides} total rides."
+total_rides_per_driver(all_rides).each do |all_drivers_rides|
+  puts "#{all_drivers_rides[:driver_id]} gave #{all_drivers_rides[:total_rides]} total rides."
 end
 
 # - the total amount of money each driver has made
